@@ -8,30 +8,58 @@ Cortex::Cortex(sf::RenderWindow *window,
           int output_layer_count
      ){
           this->window=window;
-          this->offset=20;
+          this->offset=50;
+          int _y=0;
           this->hidden_layer.resize(hidden_layer_depth);
-          for(int i=0+hidden_layer_depth;i<input_count;i++){
-                    Perceptron p{float(i),float(0),this->offset}; 
+          for(int x=0;x<input_count;x++){
+                    Perceptron p{float(x),float(_y),this->offset}; 
                     this->output_layer.push_back(p);
           }
-          
-
+          _y++;
           for(int y=0;y<hidden_layer_depth;y++){
                for(int x=0;x<hidden_layer_count;x++){
-                    Perceptron p{float(x),float(y+1),this->offset}; 
+                    Perceptron p{float(x),float(_y),this->offset}; 
                     this->hidden_layer[y].push_back(p);
                }
+               _y++;
           }
-          for(int i=0+hidden_layer_depth;i<output_layer_count+hidden_layer_depth;i++){
-                    Perceptron p{float(i),float(hidden_layer_depth+1),this->offset}; 
+          for(int x=0;x<output_layer_count;x++){
+                    Perceptron p{float(x),float(_y),this->offset}; 
                     this->output_layer.push_back(p);
-
           }
      }
 void Cortex::learn(std::vector<float> given, std::vector<float>expected, float learn_rate){}
 void Cortex::backwards_propagate(std::vector<float>){}
-void Cortex::forward_propagate(){}
-void Cortex::train(std::vector<std::vector<float[2]>>& training_data){}
+void Cortex::forward_propagate(std::vector<float> inputs){
+     for(int i=0;i<inputs.size();i++){
+          this->input_layer[i].Activation=inputs[i];
+     }
+     for(int y=0;y<this->hidden_layer.size();y++){
+          for(int x=0;x<this->hidden_layer[y].size();x++){
+               std::vector<float> weights=this->get_weights(y);
+               std::vector<float> activations=this->get_activtions(y);
+               this->hidden_layer[y][x].activate(weights,activations);
+          }
+     }
+}
+std::vector<float> Cortex::get_weights(int index){
+     std::vector<float> t;
+     return t;
+}
+std::vector<float> Cortex::get_activtions(int index){
+     std::vector<float> t;
+     return t;
+}
+
+void Cortex::train(std::vector<std::vector<std::vector<float>>>& training_data, int epoc)
+     {
+     for(int j=0;j<epoc;j++){
+          for(int i =0;i<training_data.size();i++){
+               this->forward_propagate(training_data[i][0]);
+               this->backwards_propagate(training_data[i][1]);
+          }
+     }
+}
 void Cortex::render(sf::RenderWindow &window){
      for(Perceptron p:this->input_layer){
           p.render(window);
@@ -45,3 +73,4 @@ void Cortex::render(sf::RenderWindow &window){
           p.render(window);
      }
 }
+
