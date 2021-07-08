@@ -12,13 +12,13 @@ Cortex::Cortex(sf::RenderWindow *window,
           for(int i=0+hidden_layer_depth;i<input_count;i++){
                     Perceptron p{float(i),float(0)}; 
                     this->output_layer.push_back(p);
-
+          }
           
 
           for(int y=0;y<hidden_layer_depth;y++){
                for(int x=0;x<hidden_layer_count;x++){
                     Perceptron p{float(x),float(y+1)}; 
-                    this->hidden_layer[y][x].push_back(p);
+                    this->hidden_layer[y].push_back(p);
                }
           }
           for(int i=0+hidden_layer_depth;i<output_layer_count+hidden_layer_depth;i++){

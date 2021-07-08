@@ -4,6 +4,7 @@
 #include <math.h>
 #include <cmath>
 class Perceptron{
+     public:
      sf::CircleShape shape;
      float Activation;
      float bias;

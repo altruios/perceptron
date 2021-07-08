@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <Perceptron.hpp>
 #include <vector>
 #include <math.h>
 #include <cmath>
 class Cortex{
-     std::vector<Perceptron>*output_layer;
-     std::vector<std::vector<Perceptron>*hidden_layer;
-     std::vector<Perceptron>*input_layer;
      public:
+     std::vector<Perceptron> output_layer;
+     std::vector<std::vector<Perceptron>> hidden_layer;
+     std::vector<Perceptron> input_layer;
      sf::RenderWindow *window;
      Cortex(sf::RenderWindow*window, 
           int input_count, 
