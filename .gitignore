@@ -1,0 +1,6 @@
+/.vscode
+/build
+/SFML-2.5.1-sources
+/SFML-2.5.1-sources.zip
+/*.exe
+/*.o
