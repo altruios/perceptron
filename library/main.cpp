@@ -13,8 +13,8 @@ void print(Args &&...args)
 void render_step(sf::RenderWindow &window){
 
 }
-void draw(sf::RenderWindow &window){
-
+void draw(sf::RenderWindow &window,Cortex &c){
+     c.render(window);
 }
 
 void player_controls(sf::RenderWindow &window){
@@ -25,10 +25,9 @@ void player_controls(sf::RenderWindow &window){
 int main(){
      //WINDOW SETUP:
      sf::RenderWindow window(sf::VideoMode(1920, 1080), "perceptron");
-     window.setFramerateLimit(60);
      // Create a graphical text to display
 
-     Cortex c{&window,1,1,1,1};
+     Cortex c{&window,4,4,4,4};
      while (window.isOpen()){
           sf::Event event;
           while (window.pollEvent(event)){
@@ -38,7 +37,7 @@ int main(){
           }
           player_controls(window);
           render_step(window);
-          draw(window);
+          draw(window,c);
           window.display();
      }
      return 0;

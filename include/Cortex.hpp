@@ -6,6 +6,7 @@
 #include <cmath>
 class Cortex{
      public:
+     float offset;
      std::vector<Perceptron> output_layer;
      std::vector<std::vector<Perceptron>> hidden_layer;
      std::vector<Perceptron> input_layer;
@@ -21,4 +22,6 @@ class Cortex{
      void backwards_propagate(std::vector<float>);
      void forward_propagate();
      void train(std::vector<std::vector<float[2]>>& training_data);
+     void render(sf::RenderWindow &window);
+
 };

@@ -11,7 +11,7 @@ class Perceptron{
      float weight;
      float x;
      float y;
-     Perceptron(float x, float y);
+     Perceptron(float x, float y,float offset);
      void update(sf::RenderWindow &window);
      void render(sf::RenderWindow &window);
      void activate(std::vector<float>&weights,std::vector<float>&activations);
