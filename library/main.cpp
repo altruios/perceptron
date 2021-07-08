@@ -7,7 +7,7 @@
 template <typename... Args>
 void print(Args &&...args)
 {
- //    (std::cout << ... << args) << '\n';
+     (std::cout << ... << args) << '\n';
 }
 
 void render_step(sf::RenderWindow &window){
@@ -24,7 +24,7 @@ void player_controls(sf::RenderWindow &window){
 
 int main(){
      //WINDOW SETUP:
-     sf::RenderWindow window(sf::VideoMode(1920, 1080), "simple game");
+     sf::RenderWindow window(sf::VideoMode(1920, 1080), "perceptron");
      window.setFramerateLimit(60);
      // Create a graphical text to display
 
