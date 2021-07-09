@@ -8,6 +8,7 @@ class Perceptron{
      sf::CircleShape shape;
      sf::CircleShape debug_box;
      float Activation;
+     sf::Text text;
      float bias;
      std::vector<float> weights;
      float x;
@@ -15,7 +16,7 @@ class Perceptron{
      float y;
      bool debug_on;
 
-     Perceptron(float x, float y,float offset);
+     Perceptron(float x, float y,float offset, sf::Font &font);
      void update();
      void render(sf::RenderWindow &window);
      void activate(std::vector<float>&weights,std::vector<float>&activations);
@@ -24,5 +25,6 @@ class Perceptron{
      float activation_fn(float value);
      void debug(sf::RenderWindow &window);
      float get_weight(int key);
+     void make_weights(int count);
 
 };

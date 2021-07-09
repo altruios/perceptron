@@ -29,20 +29,26 @@ int main(){
      //WINDOW SETUP:
      sf::RenderWindow window(sf::VideoMode(1920, 1080), "perceptron");
      // Create a graphical text to display
-     std::vector<std::vector<float>> training_data {
-          {0,1,2},{3,1,2},{1,2,3},{11,-11,2},{3,1,2},{1,2,3},{3,3,1},{3,3,3},{0,3,0},{3,2,1}
-          };
-     Cortex c{&window,3,5,4,2};
-     while (window.isOpen()){
-          sf::Event event;
-          while (window.pollEvent(event)){
-               if (event.type == sf::Event::Closed){
-                    window.close();
-               }
-          }
-          c.run(window,training_data);
-     window.display();
-
+     sf::Font font;
+     if(!font.loadFromFile("arial.ttf")){
+          std::cout<<"what?0"<<std::endl;
      }
+     std::vector<std::vector<std::vector<float>>> training_data {
+          {{0,1,2},{1,0}},
+          {{3,1,2},{0,1}},
+          {{1,2,3},{1,0}},
+          {{11,-11,2},{0,1}},
+          {{3,1,2},{0,1}},
+          {{1,2,3},{1,0}},
+          {{3,3,1},{0,1}},
+          {{3,3,3},{0,1}},
+          {{0,3,0},{0,1}},
+          {{3,2,1},{1,0}}
+          };
+     Cortex c{&window,3,5,4,2,font};
+
+     c.run(training_data);
+
+     
      return 0;
 }

@@ -1,7 +1,10 @@
 #include <Perceptron.hpp>
 #include <vector>
+#include <iostream>
 
-Perceptron::Perceptron(float x,float y, float offset){
+
+Perceptron::Perceptron(float x,float y, float offset, sf::Font &font){
+
      this->x=x;
      this->y=y;
      this->offset=offset;
@@ -9,6 +12,9 @@ Perceptron::Perceptron(float x,float y, float offset){
      this->bias= this->activation_fn((x*x)-(y*y));
      this->debug_on=true;
      this->update();
+     this->text.setFont(font);
+     this->text.setCharacterSize(20);
+     this->text.setFillColor(sf::Color::Red);
      sf::FloatRect shape_bounds = this->shape.getLocalBounds();
      this->shape.setOrigin(shape_bounds.width/2.f, shape_bounds.height/2.f);
 }
@@ -38,6 +44,11 @@ void Perceptron::activate(std::vector<float>&weights, std::vector<float>&activat
 }
 float Perceptron::get_weight(int key){
      return this->weights[key];
+}
+void Perceptron::make_weights(int count){
+     for(int i=0;i<count;i++){
+          this->weights.push_back(sin(i));
+     }
 }
 void Perceptron::set_weights(float weight,int index){
      this->weights[index]=weight;
