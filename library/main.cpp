@@ -24,23 +24,14 @@ void print(Args &&...args)
      (std::cout << ... << args) << '\n';
 }
 
-void render_step(sf::RenderWindow &window){
-
-}
-void draw(sf::RenderWindow &window,Cortex &c){
-     c.render(window);
-}
-
-void player_controls(sf::RenderWindow &window){
-
-}
-
 
 int main(){
      //WINDOW SETUP:
      sf::RenderWindow window(sf::VideoMode(1920, 1080), "perceptron");
      // Create a graphical text to display
-
+     std::vector<std::vector<float>> training_data {
+          {0,1,2},{3,1,2},{1,2,3},{11,-11,2},{3,1,2},{1,2,3},{3,3,1},{3,3,3},{0,3,0},{3,2,1}
+          };
      Cortex c{&window,3,5,4,2};
      while (window.isOpen()){
           sf::Event event;
@@ -49,10 +40,9 @@ int main(){
                     window.close();
                }
           }
-          player_controls(window);
-          render_step(window);
-          draw(window,c);
-          window.display();
+          c.run(window,training_data);
+     window.display();
+
      }
      return 0;
 }

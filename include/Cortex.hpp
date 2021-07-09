@@ -18,11 +18,14 @@ class Cortex{
           int output_layer_count
      );
      std::vector<float> prediect(std::vector<float>&inputs);
-     void learn(std::vector<float> given, std::vector<float>expected, float learn_rate);
+     float learn(std::vector<float> given, std::vector<float>expected, float learn_rate);
      void backwards_propagate(std::vector<float>);
      void forward_propagate(std::vector<float> inputs);
      void train(std::vector<std::vector<std::vector<float>>>& training_data, int epoc);
      void render(sf::RenderWindow &window);
-     std::vector<float> get_weights(int index);
      std::vector<float> get_activtions(int index);
+     void run(sf::RenderWindow &window, std::vector<std::vector<float>>&training_data);
+     std::vector<float> predict();
+     std::vector<float> get_weights(int index, int key);
+
 };
