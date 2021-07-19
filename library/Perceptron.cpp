@@ -17,6 +17,7 @@ Perceptron::Perceptron(float x,float y, float offset, sf::Font &font){
      this->text.setFillColor(sf::Color::Red);
      sf::FloatRect shape_bounds = this->shape.getLocalBounds();
      this->shape.setOrigin(shape_bounds.width/2.f, shape_bounds.height/2.f);
+     
 }
 
 void Perceptron::update(){
@@ -44,6 +45,9 @@ void Perceptron::activate(std::vector<float>&weights, std::vector<float>&activat
 }
 float Perceptron::get_weight(int key){
      return this->weights[key];
+}
+std::vector<float> Perceptron::get_weights(){
+     return this->weights;
 }
 void Perceptron::make_weights(int count){
      for(int i=0;i<count;i++){

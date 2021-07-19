@@ -41,7 +41,29 @@ Cortex::Cortex(sf::RenderWindow *window,
 
 
      }
-float Cortex::learn(std::vector<float> given, std::vector<float>expected, float learn_rate){}
+float dot_multiply(std::vector<float> a, std::vector<float>b){
+     float result = 0.0;
+     for(int i=0;i<a.size();i++){
+          result= result + a[i]*b[i];
+     }
+     return result;
+}
+
+float Cortex::learn(std::vector<float> given, std::vector<float>expected, float learn_rate){
+     float error_correction_value = this->dot_multiply(given, expected);
+     for(std::vector<Perceptron> row : this->hidden_layer){
+          for(Perceptron p : row){
+               for(int i=0;i<p.weights.size();i++){
+                    float temp = p.weights[i];
+                    p.weights[i]= p.weights[i]+ learn_rate*(error_correction_value)*p.Activation;
+                    this->forward_propagate(this->last_input);
+                    std::vector<float> attempted_value = this->predict();
+                    float new_error = this->dot_multiply(attempted_value,expected);
+                    error_correction_value=new_error;//maybe not this...
+               }
+          }
+     }
+}
 void Cortex::backwards_propagate(std::vector<float> expected_results){
      std::vector<float> prediction = this->predict();
      //for loop here?
@@ -49,7 +71,7 @@ void Cortex::backwards_propagate(std::vector<float> expected_results){
      float calculated_error = 0.0f;
      int max_count=1024;
      int count =0;
-     while(error>calculated_error && count<max_count){
+     while( error>calculated_error && count<max_count){
           calculated_error = learn(prediction,expected_results,0.1f);
           count++;
      }
@@ -64,7 +86,7 @@ std::vector<float> Cortex::predict(){
 }
 void Cortex::forward_propagate(std::vector<float> inputs){
           std::cout<<"forward propagating"<<std::endl;
-
+     this->last_input=inputs;
      for(int i=0;i<inputs.size();i++){
           std::cout<<inputs[i]<<std::endl;
           

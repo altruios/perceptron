@@ -12,6 +12,8 @@ class Cortex{
      std::vector<std::vector<Perceptron>> hidden_layer;
      std::vector<Perceptron> input_layer;
      sf::RenderWindow *window;
+     std::vector<float> last_input;
+
      Cortex(sf::RenderWindow*window, 
           int input_count, 
           int hidden_layer_count, 
@@ -29,5 +31,6 @@ class Cortex{
      void run(std::vector<std::vector<std::vector<float>>>&training_data);
      std::vector<float> predict();
      std::vector<float> get_weights(int index, int key);
+     float dot_multiply(std::vector<float> a,std::vector<float> b);
 
 };

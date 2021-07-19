@@ -15,7 +15,6 @@ class Perceptron{
      int offset;
      float y;
      bool debug_on;
-
      Perceptron(float x, float y,float offset, sf::Font &font);
      void update();
      void render(sf::RenderWindow &window);
@@ -26,5 +25,5 @@ class Perceptron{
      void debug(sf::RenderWindow &window);
      float get_weight(int key);
      void make_weights(int count);
-
+     std::vector<float> get_weights();
 };
